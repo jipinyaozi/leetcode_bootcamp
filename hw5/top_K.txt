@@ -1,0 +1,12 @@
+class Solution(object):
+    def topKFrequent(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: List[int]
+        """
+        dic = defaultdict(int)
+        for i in nums:
+            dic[i] += 1
+        ans = sorted(dic, key = dic.get,reverse = True)
+        return ans[:k]
