@@ -1,0 +1,18 @@
+class Solution:
+    def canFinish(self, n: int, prerequisites: List[List[int]]) -> bool:
+        
+        then = [[] for _ in range(n)]
+        need = [0 for _ in range(n)]
+        
+        for [a,b] in prerequisites:
+            then[b].append(a)
+            need[a] += 1
+        
+        bfs = [i for i in range(n) if not need[i]]
+        
+        for pre in bfs:
+            for course in then[pre]:
+                need[course] -= 1
+                if not need[course]:
+                    bfs.append(course)
+        return len(bfs) == n
